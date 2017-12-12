@@ -16,9 +16,6 @@ import org.springframework.stereotype.Service;
 
 import static org.aspectj.bridge.MessageUtil.info;
 
-/**
- * Created by RV00451128 on 12/7/2017.
- */
 @Slf4j
 @Service
 public class DataMigrationDaoImpl implements DataMigrationDao {
@@ -48,12 +45,7 @@ public class DataMigrationDaoImpl implements DataMigrationDao {
                 JsonDocument jsonDocument = bucket.get(orgdoctype);
                 String regionNr=(String)jsonDocument.content().get("regionNr");
                 String disNr=(String)jsonDocument.content().get("districtNr");
-               // String docId = (String) obj.get("facCountryCode");
-                System.out.println("*******orgdoctype******"+orgdoctype);
-                System.out.println("*****crdfacdoctype********"+crdfacdoctype);
-                System.out.println("******obj*******"+regionNr);
-                System.out.println("******obj*******"+disNr);
-
+          
                 bucket.mutateIn(docid)
                         .upsert("ownRegNr",regionNr,true)
                         .upsert("ownDisNr",disNr,true)
@@ -63,24 +55,7 @@ public class DataMigrationDaoImpl implements DataMigrationDao {
                         .upsert("ownRegNr",regionNr,true)
                         .upsert("ownDisNr",disNr,true)
                         .execute();
-               /* N1qlQuery Query1 = N1qlQuery.parameterized(" SELECT meta(`" + bucketName + "`).id AS regionNr,districtNr FROM `" + bucketName + "` WHERE docType=$1", JsonArray.from(orgdoctype));
-                N1qlQueryResult queryResult1 = bucket.query(Query1);
-                try {
-                    for (N1qlQueryRow result1: queryResult1) {
-                        JsonObject obj1 = result1.value();
-                        System.out.println("******obj*******"+obj1);
-
-                    }}catch(Exception e) {
-                        info(e.getMessage());
-                        System.out.println("Error found!!!");
-                    }*/
-
-               /* for (JSONObject fieldsTobeAdded: fieldDetails) {
-                    if(fieldsTobeAdded.get("fieldtype").toString().equals(String.class)){
-
-                    }
-                    bucket.mutateIn(docId).insert(fieldsTobeAdded.get("fieldname").toString(), null, false).execute();
-                }*/
+               
             }
         } catch(Exception e) {
             info(e.getMessage());
