@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  couchbase:
+    bootstrap-hosts: localhost
+    bucket:
+      name: default
+      password:
+logging:
+  enable: true
+  level:
+    org.springframework.data: DEBUG
+    org.springframework.data.repository: DEBUG
+    org.springframework.data.couchbase.repository.query: DEBUG
+    org.springframework.data.couchbase.repository.query.support: DEBUG
+    org.springframework.data.couchbase.core: DEBUG
+emp:
+  document:
+    expiry: 300
+
