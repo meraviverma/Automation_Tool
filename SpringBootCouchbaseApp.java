@@ -23,11 +23,6 @@ public class SpringBootCouchbaseApp implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
        dataMigrationService.updatefields();
-        /* try {
-
-        }catch (JsonParseException e) {
-            log.error("JsonParseException occurred while parsing JSON input file: ", e);
-        }*/
-        System.exit(1);
+            System.exit(1);
     }
 }
